@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fafaf8">
+  <meta name="description" content="了解 codex-theme 的玻璃样式、本地壁纸设置、主题加载方式与公开源码。" data-i18n-content="themePageMetaDescription">
+  <meta property="og:title" content="Codex Liquid Glass · Freeze’s Nest" data-i18n-content="themePageMetaTitle">
+  <meta property="og:description" content="了解 codex-theme 的玻璃样式、本地壁纸设置、主题加载方式与公开源码。" data-i18n-content="themePageMetaDescription">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://xiaoqiuyi.me/codex-theme.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="color-scheme" content="light">
+  <title data-i18n="themePageMetaTitle">Codex Liquid Glass · Freeze’s Nest</title>
+  <link rel="canonical" href="https://xiaoqiuyi.me/codex-theme.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/paper-background.jpeg" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-page="codex-theme">
+  <a class="skip-link" href="#content" data-i18n="skip">跳到内容</a>
+  <div class="wallpaper" aria-hidden="true"><img src="assets/paper-background.jpeg" alt="" fetchpriority="high"></div>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" data-page-link>
+        <img class="brand-icon" src="assets/favicon.svg" alt="">
+        <span class="brand-copy">
+          <span class="brand-name">Freeze’s Nest</span>
+          <span class="brand-subtitle" data-i18n="nestSubtitle">秋易的小窝</span>
+        </span>
+      </a>
+      <button class="language-toggle" id="language-toggle" type="button" aria-label="切换到英文" hidden>EN</button>
+      <nav class="nav-pill" aria-label="页面导航" data-i18n-aria="navigation">
+        <a class="nav-link" href="index.html" data-page-link="home" data-i18n="navHome">首页</a>
+        <a class="nav-link" href="about.html" data-page-link="about" data-i18n="navAbout">关于</a>
+        <a class="nav-link" href="projects.html" data-page-link="projects" data-i18n="navProjects" aria-current="true">项目</a>
+        <a class="nav-link" href="interests.html" data-page-link="interests" data-i18n="navInterests">兴趣</a>
+        <a class="nav-link" href="contact.html" data-page-link="contact" data-i18n="navContact">联系</a>
+      </nav>
+    </header>
+    <main id="content" class="page-layout codex-theme-layout" tabindex="-1">
+      <header class="nest-intro page-intro">
+  <h1 class="page-title" data-i18n="themePageTitle">Codex Liquid Glass</h1>
+  <p class="nest-description" data-i18n="themePageIntro">一个面向 macOS Codex 桌面端的主题项目：黑白壁纸、玻璃界面与本地设置。</p>
+</header>
+<section id="theme-features" class="section-panel card-base" aria-labelledby="theme-features-title">
+  <h2 id="theme-features-title" class="section-title" data-i18n="projectFeaturesTitle">主要功能</h2>
+  <ul class="detail-list">
+    <li>
+      <h3 data-i18n="themeWallpaperTitle">壁纸与画面</h3>
+      <p data-i18n="themeWallpaperText">支持本地图片，以及位置、填充方式、亮度与模糊等设置。</p>
+    </li>
+    <li>
+      <h3 data-i18n="themeGlassTitle">玻璃界面</h3>
+      <p data-i18n="themeGlassText">为输入区域、菜单与浮动面板添加玻璃质感，并跟随应用的浅色或深色外观。</p>
+    </li>
+    <li>
+      <h3 data-i18n="themeSettingsTitle">可视化设置</h3>
+      <p data-i18n="themeSettingsText">通过本地设置页选择和预览壁纸，调整浅色界面透明度，也可以恢复默认壁纸。</p>
+    </li>
+    <li>
+      <h3 data-i18n="themeLoaderTitle">独立加载</h3>
+      <p data-i18n="themeLoaderText">主题通过独立启动器和本地调试接口加载，保留官方应用及其签名文件。</p>
+    </li>
+  </ul>
+</section>
+<section id="theme-technology" class="section-panel card-base" aria-labelledby="theme-technology-title">
+  <h2 id="theme-technology-title" class="section-title" data-i18n="projectTechnologyTitle">技术构成</h2>
+  <ul class="detail-list">
+    <li>
+      <h3 data-i18n="themePythonTitle">Python</h3>
+      <p data-i18n="themePythonText">负责安装、主题管理和本地插件工具。</p>
+    </li>
+    <li>
+      <h3 data-i18n="themeJavaScriptTitle">JavaScript / Node.js</h3>
+      <p data-i18n="themeJavaScriptText">负责主题运行器与本地调试连接。</p>
+    </li>
+    <li>
+      <h3 data-i18n="themeCssTitle">CSS 与 HTML</h3>
+      <p data-i18n="themeCssText">CSS 定义玻璃样式；HTML 承载壁纸设置界面。</p>
+    </li>
+    <li>
+      <h3 data-i18n="themeNativeTitle">Objective-C 与 Shell</h3>
+      <p data-i18n="themeNativeText">用于 macOS 启动器、观察器与安装启动入口。</p>
+    </li>
+  </ul>
+</section>
+<section id="theme-source" class="section-panel card-base" aria-labelledby="theme-source-title">
+  <h2 id="theme-source-title" class="section-title" data-i18n="projectSourceTitle">公开源码</h2>
+  <p class="content-copy" data-i18n="themeSourceText">仓库公开了主题、插件、设置页面与安装说明。安装要求与兼容性说明可在项目文档中查看。</p>
+  <div class="project-actions">
+    <a class="page-button" href="https://github.com/QuinnFreeze/codex-theme" target="_blank" rel="noopener noreferrer"><span data-i18n="viewProject">查看 GitHub</span> <span class="sr-only" data-i18n="newTab">（在新标签页打开）</span></a>
+    <a class="text-link" href="https://github.com/QuinnFreeze/codex-theme/blob/main/theme/README.md" target="_blank" rel="noopener noreferrer"><span data-i18n="readProjectGuide">阅读项目说明</span> <span class="sr-only" data-i18n="newTab">（在新标签页打开）</span></a>
+    <a class="text-link" href="https://github.com/QuinnFreeze/codex-theme/blob/main/plugins/codex-liquid-glass/README.md" target="_blank" rel="noopener noreferrer"><span data-i18n="readPluginGuide">查看插件说明</span> <span class="sr-only" data-i18n="newTab">（在新标签页打开）</span></a>
+  </div>
+  <a class="text-link" href="projects.html" data-page-link data-i18n="projectBack">返回项目目录</a>
+</section>
+
+    </main>
+    <footer class="site-footer"><p data-i18n="footer">Freeze’s Nest · 李秋易 / Quinn Freeze</p></footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+[
+  {
+    "file": "index.html",
+    "page": "home",
+    "nav": "home",
+    "titleKey": "siteTitle",
+    "title": "Freeze’s Nest · 秋易的小窝",
+    "descriptionKey": "homeMetaDescription",
+    "description": "Freeze’s Nest · 秋易的小窝，李秋易（Quinn Freeze）的个人主页。认识我、浏览公开作品，或从兴趣开始探索。"
+  },
+  {
+    "file": "about.html",
+    "page": "about",
+    "nav": "about",
+    "titleKey": "aboutPageTitle",
+    "title": "关于我 · Freeze’s Nest",
+    "descriptionKey": "aboutMetaDescription",
+    "description": "关于李秋易（Quinn Freeze）：基本资料、兴趣方向与 Freeze’s Nest 数字小窝。"
+  },
+  {
+    "file": "projects.html",
+    "page": "projects",
+    "nav": "projects",
+    "titleKey": "projectsPageMetaTitle",
+    "title": "个人项目 · Freeze’s Nest",
+    "descriptionKey": "projectsPageMetaDescription",
+    "description": "Freeze’s Nest 的公开作品目录：Codex Liquid Glass 桌面主题与个人网站源码。"
+  },
+  {
+    "file": "interests.html",
+    "page": "interests",
+    "nav": "interests",
+    "titleKey": "interestsPageTitle",
+    "title": "兴趣与关注 · Freeze’s Nest",
+    "descriptionKey": "interestsMetaDescription",
+    "description": "李秋易（Quinn Freeze）关注历史、政治、技术、哲学与经济，也喜欢阅读、编程和策略游戏。"
+  },
+  {
+    "file": "contact.html",
+    "page": "contact",
+    "nav": "contact",
+    "titleKey": "contactPageTitle",
+    "title": "联系我 · Freeze’s Nest",
+    "descriptionKey": "contactMetaDescription",
+    "description": "通过邮箱、GitHub、X 与 WhatsApp 账号联系李秋易（Quinn Freeze）。"
+  },
+  {
+    "file": "codex-theme.html",
+    "page": "codex-theme",
+    "nav": "projects",
+    "titleKey": "themePageMetaTitle",
+    "title": "Codex Liquid Glass · Freeze’s Nest",
+    "descriptionKey": "themePageMetaDescription",
+    "description": "了解 codex-theme 的玻璃样式、本地壁纸设置、主题加载方式与公开源码。"
+  },
+  {
+    "file": "freeze-nest.html",
+    "page": "freeze-nest",
+    "nav": "projects",
+    "titleKey": "nestPageMetaTitle",
+    "title": "Freeze’s Nest 网站 · 个人项目",
+    "descriptionKey": "nestPageMetaDescription",
+    "description": "了解 Freeze’s Nest 个人网站的双语内容、响应式布局、自动年龄与原生 HTML、CSS、JavaScript 源码。"
+  }
+]

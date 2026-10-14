@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fafaf8">
-  <meta name="description" content="Freeze’s Nest · 秋易的小窝，李秋易（Quinn Freeze）的个人主页，分享兴趣、公开作品与联系入口。" data-i18n-content="metaDescription">
+  <meta name="description" content="Freeze’s Nest · 秋易的小窝，李秋易（Quinn Freeze）的个人主页。认识我、浏览公开作品，或从兴趣开始探索。" data-i18n-content="homeMetaDescription">
   <meta property="og:title" content="Freeze’s Nest · 秋易的小窝" data-i18n-content="siteTitle">
-  <meta property="og:description" content="Freeze’s Nest · 秋易的小窝，李秋易（Quinn Freeze）的个人主页，分享兴趣、公开作品与联系入口。" data-i18n-content="metaDescription">
+  <meta property="og:description" content="Freeze’s Nest · 秋易的小窝，李秋易（Quinn Freeze）的个人主页。认识我、浏览公开作品，或从兴趣开始探索。" data-i18n-content="homeMetaDescription">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://xiaoqiuyi.me/">
   <meta name="twitter:card" content="summary">
@@ -18,12 +18,12 @@
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
-<body>
+<body data-page="home">
   <a class="skip-link" href="#content" data-i18n="skip">跳到内容</a>
   <div class="wallpaper" aria-hidden="true"><img src="assets/paper-background.jpeg" alt="" fetchpriority="high"></div>
   <div class="site-shell">
     <header class="site-header">
-      <a class="brand" href="#profile">
+      <a class="brand" href="index.html" data-page-link>
         <img class="brand-icon" src="assets/favicon.svg" alt="">
         <span class="brand-copy">
           <span class="brand-name">Freeze’s Nest</span>
@@ -32,127 +32,26 @@
       </a>
       <button class="language-toggle" id="language-toggle" type="button" aria-label="切换到英文" hidden>EN</button>
       <nav class="nav-pill" aria-label="页面导航" data-i18n-aria="navigation">
-        <a class="nav-link" href="#profile" data-i18n="navHome">首页</a>
-        <a class="nav-link" href="#projects" data-i18n="navProjects">项目</a>
-        <a class="nav-link" href="#interests" data-i18n="navInterests">兴趣</a>
-        <a class="nav-link" href="#contact" data-i18n="navContact">联系</a>
+        <a class="nav-link" href="index.html" data-page-link="home" data-i18n="navHome" aria-current="page">首页</a>
+        <a class="nav-link" href="about.html" data-page-link="about" data-i18n="navAbout">关于</a>
+        <a class="nav-link" href="projects.html" data-page-link="projects" data-i18n="navProjects">项目</a>
+        <a class="nav-link" href="interests.html" data-page-link="interests" data-i18n="navInterests">兴趣</a>
+        <a class="nav-link" href="contact.html" data-page-link="contact" data-i18n="navContact">联系</a>
       </nav>
     </header>
-    <main id="content" tabindex="-1">
-      <header class="nest-intro">
-        <p class="nest-welcome" data-i18n="nestWelcome">欢迎来到我的数字小窝。</p>
-        <p class="nest-description" data-i18n="nestDescription">这里放着我的兴趣、公开作品与联系入口。</p>
-      </header>
-      <section id="profile" class="profile-card card-base" aria-label="个人介绍" data-i18n-aria="aboutAria" tabindex="-1">
-        <p class="section-kicker" data-i18n="aboutTitle">关于我</p>
-        <div class="profile-header">
-          <h1 class="author-name">李秋易</h1>
-          <p class="english-name">Quinn Freeze</p>
-          <div class="theme-pill" aria-hidden="true"></div>
-        </div>
-        <div class="profile-quote">
-          <p class="motto-text" lang="zh-CN">问史哪得信如许<br>唯有实录奠根基</p>
-          <p class="motto-translation" data-i18n="mottoTranslation"></p>
-        </div>
-        <dl class="profile-facts">
-          <div>
-            <dt data-i18n="ageLabel">年龄</dt>
-            <dd><span data-age>—</span></dd>
-          </div>
-          <div>
-            <dt data-i18n="birthdayLabel">生日</dt>
-            <dd><time datetime="2009-01-21" data-birthday>2009 年 1 月 21 日</time></dd>
-          </div>
-        </dl>
-        <noscript><p class="no-script-note" data-i18n="ageUnavailable">启用 JavaScript 后可显示自动计算的年龄。</p></noscript>
-        <p class="profile-intro" data-i18n="intro">对历史、政治、技术、哲学与经济感兴趣，喜欢阅读、编程和策略游戏。</p>
-        <div class="profile-tags" aria-label="兴趣" data-i18n-aria="interestsAria">
-          <span class="tag-chip" data-i18n="history">历史</span>
-          <span class="tag-chip" data-i18n="politics">政治</span>
-          <span class="tag-chip" data-i18n="technology">技术</span>
-          <span class="tag-chip" data-i18n="philosophy">哲学</span>
-          <span class="tag-chip" data-i18n="economics">经济</span>
-        </div>
-      </section>
-      <section id="projects" class="section-panel card-base" aria-labelledby="projects-title" tabindex="-1">
-        <h2 id="projects-title" class="section-title" data-i18n="projectsTitle">个人项目</h2>
-        <p class="section-intro" data-i18n="projectsIntro">一些公开在 GitHub 上的作品。</p>
-        <div class="project-list">
-          <a class="project-card" href="https://github.com/QuinnFreeze/codex-theme" target="_blank" rel="noopener noreferrer">
-            <div class="project-heading">
-              <h3>codex-theme</h3>
-              <svg class="project-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg>
-            </div>
-            <p class="project-description" data-i18n="themeDescription">用于 Codex 桌面端的 Liquid Glass 主题插件，支持壁纸和玻璃效果设置。</p>
-            <ul class="project-stack" aria-label="技术栈" data-i18n-aria="stackAria">
-              <li>Python</li><li>JavaScript</li><li>CSS</li>
-            </ul>
-            <span class="project-link"><span data-i18n="viewProject">查看 GitHub</span><span class="sr-only" data-i18n="newTab">（在新标签页打开）</span></span>
-          </a>
-          <a class="project-card" href="https://github.com/QuinnFreeze/Freeze-s-life" target="_blank" rel="noopener noreferrer">
-            <div class="project-heading">
-              <h3>Freeze-s-life</h3>
-              <svg class="project-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg>
-            </div>
-            <p class="project-description" data-i18n="websiteDescription">这个个人主页的源码，使用轻量的 HTML、CSS 和 JavaScript 构建。</p>
-            <ul class="project-stack" aria-label="技术栈" data-i18n-aria="stackAria">
-              <li>HTML</li><li>CSS</li><li>JavaScript</li>
-            </ul>
-            <span class="project-link"><span data-i18n="viewProject">查看 GitHub</span><span class="sr-only" data-i18n="newTab">（在新标签页打开）</span></span>
-          </a>
-        </div>
-      </section>
-      <section id="interests" class="section-panel card-base" aria-labelledby="interests-title" tabindex="-1">
-        <h2 id="interests-title" class="section-title" data-i18n="interestsTitle">兴趣与关注</h2>
-        <p class="section-intro" data-i18n="interestsIntro">几个持续感兴趣的方向。</p>
-        <ul class="interest-list">
-          <li>
-            <h3 data-i18n="historyPoliticsTitle">历史与政治</h3>
-            <p data-i18n="historyPoliticsDescription">从历史记录与政治议题出发，理解社会与制度。</p>
-          </li>
-          <li>
-            <h3 data-i18n="technologyTitle">技术与编程</h3>
-            <p data-i18n="technologyDescription">关注技术，尝试通过编程实现自己的想法。</p>
-          </li>
-          <li>
-            <h3 data-i18n="readingTitle">阅读与思考</h3>
-            <p data-i18n="readingDescription">通过阅读探索哲学与经济，保持思考。</p>
-          </li>
-          <li>
-            <h3 data-i18n="strategyTitle">策略游戏</h3>
-            <p data-i18n="strategyDescription">喜欢在规则、选择与取舍之间推演。</p>
-          </li>
-        </ul>
-      </section>
-      <section id="contact" class="contact-panel card-base" aria-labelledby="contact-title" tabindex="-1">
-        <h2 id="contact-title" class="contact-title" data-i18n="contactTitle">联系我</h2>
-        <p class="section-intro" data-i18n="contactIntro">可以在这些地方找到我。</p>
-        <div class="contact-list">
-          <a class="contact-row btn-regular" href="https://github.com/QuinnFreeze" target="_blank" rel="noopener noreferrer" aria-label="GitHub：QuinnFreeze（在新标签页打开）" data-i18n-aria="githubAria">
-            <span class="contact-label">GitHub</span>
-            <span class="contact-value">QuinnFreeze</span>
-            <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 19c-4 1-4-2-6-2m12 4v-3.4c0-.9-.1-1.5-.6-2 3-.3 6.1-1.5 6.1-6.9A5.4 5.4 0 0 0 19 4.9a5 5 0 0 0-.1-3.8S17.7.8 15 2.5a13 13 0 0 0-6 0C6.3.8 5.1 1.1 5.1 1.1A5 5 0 0 0 5 4.9a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.1 6.6 6.1 6.9-.4.4-.6 1.1-.6 2V21"/></svg>
-          </a>
-          <a class="contact-row btn-regular" href="mailto:xiaoqiuyi0@gmail.com">
-            <span class="contact-label" data-i18n="emailLabel">邮箱</span>
-            <span class="contact-value">xiaoqiuyi0@gmail.com</span>
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          </a>
-          <a class="contact-row btn-regular" href="https://x.com/xiaoqiuyi0" target="_blank" rel="noopener noreferrer" aria-label="X：@xiaoqiuyi0（在新标签页打开）" data-i18n-aria="xAria">
-            <span class="contact-label">X</span>
-            <span class="contact-value">@xiaoqiuyi0</span>
-            <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 3 12 18h4L8 3H4ZM4 21l7-8M13 11l7-8"/></svg>
-          </a>
-          <div class="contact-row whatsapp-contact btn-regular">
-            <span class="contact-label">WhatsApp</span>
-            <span class="contact-value" id="whatsapp-handle">@xiaoqiuyi</span>
-            <button class="copy-button" id="copy-whatsapp" type="button" hidden aria-label="复制 WhatsApp 账号 @xiaoqiuyi" data-i18n-aria="copyAria">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4"/></svg>
-            </button>
-          </div>
-        </div>
-        <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
-      </section>
+    <main id="content" class="page-layout home-layout" tabindex="-1">
+      <header class="nest-intro page-intro"><h1 class="page-title" data-i18n="homeHeading">Freeze’s Nest</h1><p class="nest-description" data-i18n="nestWelcome">欢迎来到我的数字小窝。</p></header>
+<section id="profile" class="profile-card card-base home-profile" aria-label="个人介绍" data-i18n-aria="aboutAria" tabindex="-1">
+<div class="profile-header"><h2 class="author-name">李秋易</h2><p class="english-name">Quinn Freeze</p><div class="theme-pill" aria-hidden="true"></div></div><div class="profile-quote"><p class="motto-text" lang="zh-CN">问史哪得信如许<br>唯有实录奠根基</p><p class="motto-translation" data-i18n="mottoTranslation"></p></div><p class="profile-intro" data-i18n="intro">对历史、政治、技术、哲学与经济感兴趣，喜欢阅读、编程和策略游戏。</p><div class="project-actions"><a class="page-button" href="about.html" data-page-link data-i18n="homeAboutLink">认识我</a></div>
+</section>
+<section class="section-panel card-base home-directory" aria-labelledby="home-explore-title">
+<h2 id="home-explore-title" class="section-title" data-i18n="homeExplore">从这里开始</h2><p class="section-intro" data-i18n="homeLead">这里是我的个人数字空间。认识我、看看作品，或从兴趣开始逛逛。</p>
+<div class="home-link-grid"><a id="about" class="nest-door" href="about.html" data-page-link><div class="door-heading"><h3 data-i18n="aboutTitle">关于我</h3><svg class="door-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></div><p class="content-copy" data-i18n="homeAboutSummary">名字、基本资料与兴趣方向。</p><span class="door-cta" data-i18n="homeAboutLink">认识我</span></a>
+<a id="projects" class="nest-door" href="projects.html" data-page-link><div class="door-heading"><h3 data-i18n="projectsTitle">个人项目</h3><svg class="door-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></div><p class="content-copy" data-i18n="homeProjectSummary">两个已经公开的项目，和它们各自的想法与功能。</p><span class="door-cta" data-i18n="homeProjectLink">浏览公开作品</span></a>
+<a id="interests" class="nest-door" href="interests.html" data-page-link><div class="door-heading"><h3 data-i18n="interestsTitle">兴趣与关注</h3><svg class="door-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></div><p class="content-copy" data-i18n="homeInterestSummary">历史、政治、技术、哲学、经济，以及阅读与策略游戏。</p><span class="door-cta" data-i18n="homeInterestLink">看看我关注什么</span></a>
+<a id="contact" class="nest-door" href="contact.html" data-page-link><div class="door-heading"><h3 data-i18n="contactTitle">联系我</h3><svg class="door-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></div><p class="content-copy" data-i18n="homeContactSummary">邮箱、GitHub 与原有社交账号。</p><span class="door-cta" data-i18n="homeContactLink">找到我</span></a></div>
+</section>
+
     </main>
     <footer class="site-footer"><p data-i18n="footer">Freeze’s Nest · 李秋易 / Quinn Freeze</p></footer>
   </div>

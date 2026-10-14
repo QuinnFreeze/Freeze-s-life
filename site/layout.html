@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fafaf8">
+  <meta name="description" content="{{description}}" data-i18n-content="{{descriptionKey}}">
+  <meta property="og:title" content="{{title}}" data-i18n-content="{{titleKey}}">
+  <meta property="og:description" content="{{description}}" data-i18n-content="{{descriptionKey}}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{canonical}}">
+  <meta name="twitter:card" content="summary">
+  <meta name="color-scheme" content="light">
+  <title data-i18n="{{titleKey}}">{{title}}</title>
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/paper-background.jpeg" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-page="{{page}}">
+  <a class="skip-link" href="#content" data-i18n="skip">跳到内容</a>
+  <div class="wallpaper" aria-hidden="true"><img src="assets/paper-background.jpeg" alt="" fetchpriority="high"></div>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" data-page-link>
+        <img class="brand-icon" src="assets/favicon.svg" alt="">
+        <span class="brand-copy">
+          <span class="brand-name">Freeze’s Nest</span>
+          <span class="brand-subtitle" data-i18n="nestSubtitle">秋易的小窝</span>
+        </span>
+      </a>
+      <button class="language-toggle" id="language-toggle" type="button" aria-label="切换到英文" hidden>EN</button>
+      <nav class="nav-pill" aria-label="页面导航" data-i18n-aria="navigation">
+        {{navigation}}
+      </nav>
+    </header>
+    <main id="content" class="page-layout {{page}}-layout" tabindex="-1">
+      {{content}}
+    </main>
+    <footer class="site-footer"><p data-i18n="footer">Freeze’s Nest · 李秋易 / Quinn Freeze</p></footer>
+  </div>
+</body>
+</html>

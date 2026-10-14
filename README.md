@@ -4,7 +4,7 @@
 
 以手机访问为主，沿用 Firefly 风格的圆角导航、玻璃卡片、浅色联系按钮与胶囊标签。展示已确认的名字、题词、生日、自动计算的年龄、兴趣、公开项目和原有联系入口。支持中文与英文切换，不增加运行时依赖。
 
-保留现有手绘壁纸文件，不替换、压缩或编辑图片。壁纸使用 `object-fit: cover` 铺满视口；桌面内容展开到页面两侧，平板使用两栏，手机保持单栏。宽桌面将介绍、公开作品、兴趣与联系入口分配到三栏，兴趣使用带说明的文字列表与细分隔线。
+保留现有手绘壁纸与透明玻璃视觉。壁纸使用 `object-fit: cover` 铺满视口，卡片、导航和内容区域随屏幕宽度调整，手机以单栏阅读为主。首页提供简短入口，关于、项目、兴趣和联系使用独立页面，公开项目另有详情页。
 
 ## 设计参考与许可
 
@@ -14,13 +14,20 @@ Firefly 的 MIT 版权与许可声明保留在 [`dist/assets/firefly-license.txt
 
 ## 网站文件
 
-- `dist/index.html`：关于我、个人项目、兴趣与联系入口
+- `site/layout.html`：各页共用的 HTML 框架、页头、导航和页脚
+- `site/pages.json`：页面文件名、导航归属、标题与 SEO 描述
+- `site/pages/*.html`：七个页面的正文源片段
+- `scripts/build.mjs`：使用 Node.js 内置模块生成完整静态页面
+- `dist/index.html`：首页
+- `dist/about.html`、`dist/projects.html`、`dist/interests.html`、`dist/contact.html`：关于、项目、兴趣与联系
+- `dist/codex-theme.html`、`dist/freeze-nest.html`：两个已核实公开项目的详情
 - `dist/styles.css`：响应式样式
 - `dist/app.js`：语言切换、自动年龄、WhatsApp 账号复制与反馈
 - `dist/assets/`：背景图片与图标
+- `dist/sitemap.xml`、`dist/robots.txt`：由构建生成，只列出真实公开页面
 - `.github/workflows/pages.yml`：GitHub Pages 自动部署
 
-网站仍可直接使用 `dist/`，无需安装依赖。资源采用相对路径，兼容 GitHub Pages 的仓库子路径。即使不启用 JavaScript，中文基本资料、项目与联系链接仍可使用；年龄显示为空并提示启用 JavaScript，避免展示过时的固定年龄。
+网站仍可直接使用 `dist/`，无需安装依赖。共享布局只在构建时展开，线上是七个可直接访问的 HTML 页面，不需要 Node.js 运行服务。资源与站内链接采用相对路径，兼容 GitHub Pages 的仓库子路径。即使不启用 JavaScript，中文基本资料、项目与联系链接仍可使用；年龄显示为 `—` 并提示启用 JavaScript，避免展示过时的固定年龄。首页原有的 `#profile`、`#projects`、`#interests` 和 `#contact` 锚点继续保留。
 
 语言按钮切换中文与英文，浏览器可用时保存偏好；`?lang=zh` 或 `?lang=en` 可指定分享链接的语言。存储被禁用时仍可切换。年龄按 `Asia/Shanghai` 日期和生日 `2009-01-21` 计算。
 
@@ -43,8 +50,9 @@ WhatsApp 只展示提供的账号，浏览器支持时可复制；不生成未�
 然后在 **Actions → Deploy website to GitHub Pages → Run workflow** 运行部署。
 此后向 `main` 推送网站文件或部署配置的更新，会自动重新部署。
 
-默认部署地址预计为：https://quinnfreeze.github.io/Freeze-s-life/ 。实际地址以 Pages 设置页或部署结果为准。
-自定义域名计划使用 `xiaoqiuyi.me`，需另行完成 Pages 域名绑定、Cloudflare DNS 和 HTTPS 验证。
+网站当前地址为 [xiaoqiuyi.me](https://xiaoqiuyi.me/)，由 GitHub Pages 发布。现有域名绑定与部署工作流保持不变。
+
+修改页面源片段或共享布局后，先执行 `npm run build` 与 `npm test`，再把生成的 `dist/` 页面与源文件一同提交。GitHub Actions 仍直接上传 `dist/`，不在发布时另行运行模板构建。
 
 ## 本地预览
 
@@ -61,12 +69,14 @@ python3 -I -m http.server 8000 --directory dist
 使用 Node.js 22 或更新版本执行，无需 `npm install`：
 
 ```bash
-npm test
 npm run build
+npm test
 ```
 
-测试覆盖生日与时区边界、双语交互、存储与剪贴板失败回退，以及保留的联系方式与内部锚点。构建仅校验脚本和资源并复制到被 Git 忽略的 `.build/`；不会推送、调用部署或修改 GitHub Actions。部署仍使用原有 `dist/` 路径。
+测试覆盖生日与时区边界、双语交互、存储与剪贴板失败回退，以及七个页面的导航、标题、canonical、内部深链接、项目来源和原有联系方式。构建校验页面元数据与脚本语法，生成 `dist/` 下的七个 HTML、站点地图和 robots 文件，再检查所有页面引用的本地资源与跨页锚点。
+
+构建保留 `dist/` 中的样式、脚本、图片和其他现有文件，只清理被 Git 忽略的 `.build/` 后复制部署文件用于本地检查。执行构建不会推送、调用部署或修改 GitHub Actions。
 
 ## 修改与备份
 
-直接编辑 `dist/` 下的文件即可。可从仓库的 **Code → Download ZIP** 下载完整源码包。
+页面正文编辑 `site/pages/`，共用页头、页脚编辑 `site/layout.html`，标题与描述编辑 `site/pages.json`；然后执行构建更新 `dist/`。样式、交互和图片仍在 `dist/` 下维护。不要仅修改生成的 HTML，下一次构建会覆盖它。可从仓库的 **Code → Download ZIP** 下载完整源码包。

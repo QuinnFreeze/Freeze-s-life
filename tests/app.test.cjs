@@ -8,22 +8,23 @@ const vm = require('node:vm');
 
 const script = fs.readFileSync(path.join(__dirname, '../dist/app.js'), 'utf8');
 
-function element({ id, dataset = {}, textContent = '', hidden = false } = {}) {
+function element({ id, dataset = {}, textContent = '', hidden = false, attributes = {} } = {}) {
   return {
     id,
     dataset,
     textContent,
     hidden,
     disabled: false,
-    attributes: {},
+    attributes,
     listeners: {},
     setAttribute(name, value) { this.attributes[name] = value; },
+    getAttribute(name) { return this.attributes[name] ?? null; },
     addEventListener(name, callback) { this.listeners[name] = callback; },
     click() { return this.listeners.click(); },
   };
 }
 
-function loadPage({ now = '2026-10-15T00:00:00Z', url = 'https://xiaoqiuyi.me/', saved, storageFails = false, clipboard } = {}) {
+function loadPage({ now = '2026-10-15T00:00:00Z', url = 'https://xiaoqiuyi.me/', saved, storageFails = false, clipboard, extraElements = [] } = {}) {
   const toggle = element({ id: 'language-toggle', hidden: true });
   const copy = element({ id: 'copy-whatsapp', hidden: true, dataset: { i18nAria: 'copyAria' } });
   const handle = element({ id: 'whatsapp-handle', textContent: ' @xiaoqiuyi ' });
@@ -33,7 +34,7 @@ function loadPage({ now = '2026-10-15T00:00:00Z', url = 'https://xiaoqiuyi.me/',
   const title = element({ dataset: { i18n: 'aboutTitle' } });
   const meta = element({ dataset: { i18nContent: 'metaDescription' } });
   const navigation = element({ dataset: { i18nAria: 'navigation' } });
-  const elements = [toggle, copy, handle, status, age, birthday, title, meta, navigation];
+  const elements = [toggle, copy, handle, status, age, birthday, title, meta, navigation, ...extraElements];
   const document = {
     documentElement: { lang: 'zh-CN' },
     hidden: false,
@@ -45,6 +46,7 @@ function loadPage({ now = '2026-10-15T00:00:00Z', url = 'https://xiaoqiuyi.me/',
         '[data-i18n-aria]': 'i18nAria',
         '[data-i18n-content]': 'i18nContent',
         '[data-birthday]': 'birthday',
+        'a[data-page-link]': 'pageLink',
       };
       if (selector === '[data-age], [data-i18n="ageValue"]') return [age];
       return elements.filter((item) => Object.hasOwn(item.dataset, datasets[selector]));
@@ -155,4 +157,53 @@ test('the page remains bilingual when the clipboard API is unavailable', () => {
   assert.equal(page.copy.hidden, true);
   assert.equal(page.title.textContent, 'About me');
   assert.equal(page.age.textContent, '17 years old');
+});
+
+test('marked page links retain the language across real pages when storage is blocked', () => {
+  const about = element({ dataset: { pageLink: '' }, attributes: { href: 'about.html' } });
+  const projects = element({ dataset: { pageLink: '' }, attributes: { href: 'projects.html?source=home#codex-theme' } });
+  const page = loadPage({
+    url: 'https://xiaoqiuyi.me/Freeze-s-life/index.html?lang=en',
+    storageFails: true,
+    extraElements: [about, projects],
+  });
+
+  assert.equal(about.getAttribute('href'), '/Freeze-s-life/about.html?lang=en');
+  assert.equal(projects.getAttribute('href'), '/Freeze-s-life/projects.html?source=home&lang=en#codex-theme');
+  assert.equal(about.listeners.click, undefined);
+  const nextPage = loadPage({ url: new URL(about.getAttribute('href'), page.location.href).href, storageFails: true });
+  assert.equal(nextPage.document.documentElement.lang, 'en');
+
+  page.toggle.click();
+  assert.equal(about.getAttribute('href'), '/Freeze-s-life/about.html?lang=zh');
+  assert.equal(projects.getAttribute('href'), '/Freeze-s-life/projects.html?source=home&lang=zh#codex-theme');
+});
+
+test('relative subpaths and hashes survive while external and unmarked links remain unchanged', () => {
+  const internal = element({ dataset: { pageLink: '' }, attributes: { href: '../projects.html?from=about&lang=zh#source' } });
+  const external = element({ attributes: { href: 'https://github.com/QuinnFreeze' } });
+  const markedExternal = element({ dataset: { pageLink: '' }, attributes: { href: 'https://github.com/QuinnFreeze/Freeze-s-life?tab=readme' } });
+  const email = element({ dataset: { pageLink: '' }, attributes: { href: 'mailto:xiaoqiuyi0@gmail.com' } });
+  loadPage({
+    url: 'https://xiaoqiuyi.me/site/nested/about.html?lang=en',
+    extraElements: [internal, external, markedExternal, email],
+  });
+
+  assert.equal(internal.getAttribute('href'), '/site/projects.html?from=about&lang=en#source');
+  assert.equal(external.getAttribute('href'), 'https://github.com/QuinnFreeze');
+  assert.equal(markedExternal.getAttribute('href'), 'https://github.com/QuinnFreeze/Freeze-s-life?tab=readme');
+  assert.equal(email.getAttribute('href'), 'mailto:xiaoqiuyi0@gmail.com');
+});
+
+test('page-specific title and metadata keys stay distinct when the language changes', () => {
+  const pageTitle = element({ dataset: { i18n: 'aboutPageTitle' } });
+  const pageMeta = element({ dataset: { i18nContent: 'aboutMetaDescription' } });
+  const page = loadPage({ saved: 'en', extraElements: [pageTitle, pageMeta] });
+
+  assert.equal(pageTitle.textContent, 'About me · Freeze’s Nest');
+  assert.match(pageMeta.getAttribute('content'), /^About 李秋易/);
+  assert.notEqual(pageMeta.getAttribute('content'), page.meta.getAttribute('content'));
+  page.toggle.click();
+  assert.equal(pageTitle.textContent, '关于我 · Freeze’s Nest');
+  assert.match(pageMeta.getAttribute('content'), /^关于李秋易/);
 });
