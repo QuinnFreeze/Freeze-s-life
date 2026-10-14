@@ -3,3 +3,4 @@ Thumbs.db
 *.zip
 .env
 .env.*
+.build/
