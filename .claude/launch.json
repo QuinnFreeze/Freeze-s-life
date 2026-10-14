@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "personal-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-I", "-m", "http.server", "4173", "--bind", "127.0.0.1", "--directory", "dist"],
+      "port": 4173
+    }
+  ]
+}
