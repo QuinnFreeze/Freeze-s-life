@@ -70,17 +70,18 @@ test('all local resources, deep links and original home anchors resolve', () => 
   }
 });
 
-test('contact page retains original contact destinations and account-copy fallback', () => {
+test('contact page retains original contacts and offers a direct WhatsApp username link', () => {
   const html = pages.get('contact.html');
   const destinations = links(html).map((attrs) => attrs.href);
   for (const href of ['https://github.com/QuinnFreeze', 'mailto:xiaoqiuyi0@gmail.com', 'https://x.com/xiaoqiuyi0']) {
     assert.ok(destinations.includes(href), `Missing existing contact: ${href}`);
   }
   assert.match(html, /id="whatsapp-handle"[^>]*>@xiaoqiuyi<\/span>/);
-  assert.ok(ids(html).includes('copy-whatsapp'), 'WhatsApp copy control is missing');
-  const status = [...html.matchAll(/<[^>]+\bid="contact-status"[^>]*>/g)].map((match) => attributes(match[0]))[0];
-  assert.equal(status?.role, 'status', 'Contact feedback should be announced accessibly');
-  assert.ok(!destinations.some((href) => /(?:wa\.me|api\.whatsapp\.com)/i.test(href)), 'Do not invent a WhatsApp chat destination');
+  const whatsapp = links(html).find((attrs) => attrs.href === 'https://wa.me/xiaoqiuyi');
+  assert.ok(whatsapp, 'WhatsApp username link should work without JavaScript');
+  assert.equal(whatsapp.target, '_blank');
+  assert.equal(whatsapp['data-i18n-aria'], 'whatsappAria');
+  assert.ok(whatsapp.class.split(/\s+/).includes('contact-row'), 'WhatsApp should share the other contact rows');
 });
 
 test('about page retains confirmed identity and birthday with an honest no-script age fallback', () => {

@@ -6,7 +6,7 @@
     "titleKey": "siteTitle",
     "title": "Freeze’s Nest · 秋易的小窝",
     "descriptionKey": "homeMetaDescription",
-    "description": "李秋易（Quinn Freeze）的个人小窝，分享兴趣、制作的小工具与公开项目。"
+    "description": "李秋易（Quinn Freeze）的个人小窝，介绍关注方向、阅读与学习经历，以及公开技术项目。"
   },
   {
     "file": "about.html",
@@ -15,7 +15,7 @@
     "titleKey": "aboutPageTitle",
     "title": "关于我 · Freeze’s Nest",
     "descriptionKey": "aboutMetaDescription",
-    "description": "关于李秋易（Quinn Freeze）：基本资料，以及学习英语、阅读历史和借助 AI 制作工具的经历。"
+    "description": "关于李秋易（Quinn Freeze）：基本资料、历史阅读与英语学习，以及借助 AI 进行的技术实践。"
   },
   {
     "file": "projects.html",
@@ -33,7 +33,7 @@
     "titleKey": "interestsPageTitle",
     "title": "兴趣与关注 · Freeze’s Nest",
     "descriptionKey": "interestsMetaDescription",
-    "description": "我的兴趣：近现代史与史料、制度与社会、AI 编程、阅读和策略游戏，也向往去更多地方旅行。"
+    "description": "我的关注方向包括近现代史、史料可靠性、制度与社会、AI 辅助编程、阅读及策略游戏。"
   },
   {
     "file": "contact.html",
@@ -51,7 +51,7 @@
     "titleKey": "themePageMetaTitle",
     "title": "Codex 玻璃主题 · Freeze’s Nest",
     "descriptionKey": "themePageMetaDescription",
-    "description": "我为 macOS Codex 制作的玻璃主题：自定义壁纸、本地设置页和独立加载工具，源码公开在 codex-theme。"
+    "description": "我为 macOS Codex 开发的玻璃主题，提供自定义壁纸、本地设置与独立加载工具，源码公开在 codex-theme。"
   },
   {
     "file": "freeze-nest.html",
@@ -60,6 +60,6 @@
     "titleKey": "nestPageMetaTitle",
     "title": "秋易的小窝 · 个人项目",
     "descriptionKey": "nestPageMetaDescription",
-    "description": "我用 HTML、CSS 和 JavaScript 制作的双语个人网站，支持手机阅读，源码公开在 Freeze-s-life。"
+    "description": "我用 HTML、CSS 和 JavaScript 构建的双语个人网站，采用响应式布局，源码公开在 Freeze-s-life。"
   }
 ]

@@ -14,7 +14,7 @@ Firefly 的 MIT 版权与许可声明保留在 [`dist/assets/firefly-license.txt
 
 ## 网站文件
 
-- `site/layout.html`：各页共用的 HTML 框架、页头、导航和页脚
+- `site/layout.html`：各页共用的 HTML 框架、页头与导航
 - `site/pages.json`：页面文件名、导航归属、标题与 SEO 描述
 - `site/pages/*.html`：七个页面的正文源片段
 - `scripts/build.mjs`：使用 Node.js 内置模块生成完整静态页面
@@ -22,7 +22,7 @@ Firefly 的 MIT 版权与许可声明保留在 [`dist/assets/firefly-license.txt
 - `dist/about.html`、`dist/projects.html`、`dist/interests.html`、`dist/contact.html`：关于、项目、兴趣与联系
 - `dist/codex-theme.html`、`dist/freeze-nest.html`：两个已核实公开项目的详情
 - `dist/styles.css`：响应式样式
-- `dist/app.js`：语言切换、自动年龄、WhatsApp 账号复制与反馈
+- `dist/app.js`：语言切换与自动年龄
 - `dist/assets/`：背景图片与图标
 - `dist/sitemap.xml`、`dist/robots.txt`：由构建生成，只列出真实公开页面
 - `.github/workflows/pages.yml`：GitHub Pages 自动部署
@@ -31,7 +31,7 @@ Firefly 的 MIT 版权与许可声明保留在 [`dist/assets/firefly-license.txt
 
 语言按钮切换中文与英文，浏览器可用时保存偏好；`?lang=zh` 或 `?lang=en` 可指定分享链接的语言。存储被禁用时仍可切换。年龄按 `Asia/Shanghai` 日期和生日 `2009-01-21` 计算。
 
-WhatsApp 只展示提供的账号，浏览器支持时可复制；不生成未经确认的聊天链接。
+WhatsApp 保留原有账号 `@xiaoqiuyi`，使用官方用户名分享格式 `https://wa.me/xiaoqiuyi`，与其他社交入口一样直接跳转。
 
 ## 公开项目与隐私
 
@@ -73,7 +73,7 @@ npm run build
 npm test
 ```
 
-测试覆盖生日与时区边界、双语交互、存储与剪贴板失败回退，以及七个页面的导航、标题、canonical、内部深链接、项目来源和原有联系方式。构建校验页面元数据与脚本语法，生成 `dist/` 下的七个 HTML、站点地图和 robots 文件，再检查所有页面引用的本地资源与跨页锚点。
+测试覆盖生日与时区边界、双语交互、存储不可用时的回退，以及七个页面的导航、标题、canonical、内部深链接、项目来源、原有联系方式和 WhatsApp 用户名链接。构建校验页面元数据与脚本语法，生成 `dist/` 下的七个 HTML、站点地图和 robots 文件，再检查所有页面引用的本地资源与跨页锚点。
 
 构建保留 `dist/` 中的样式、脚本、图片和其他现有文件，只清理被 Git 忽略的 `.build/` 后复制部署文件用于本地检查。执行构建不会推送、调用部署或修改 GitHub Actions。
 

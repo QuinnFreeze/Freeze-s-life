@@ -24,17 +24,14 @@ function element({ id, dataset = {}, textContent = '', hidden = false, attribute
   };
 }
 
-function loadPage({ now = '2026-10-15T00:00:00Z', url = 'https://xiaoqiuyi.me/', saved, storageFails = false, clipboard, extraElements = [] } = {}) {
+function loadPage({ now = '2026-10-15T00:00:00Z', url = 'https://xiaoqiuyi.me/', saved, storageFails = false, extraElements = [] } = {}) {
   const toggle = element({ id: 'language-toggle', hidden: true });
-  const copy = element({ id: 'copy-whatsapp', hidden: true, dataset: { i18nAria: 'copyAria' } });
-  const handle = element({ id: 'whatsapp-handle', textContent: ' @xiaoqiuyi ' });
-  const status = element({ id: 'contact-status' });
   const age = element({ dataset: { age: '' } });
   const birthday = element({ dataset: { birthday: '' } });
   const title = element({ dataset: { i18n: 'aboutTitle' } });
   const meta = element({ dataset: { i18nContent: 'metaDescription' } });
   const navigation = element({ dataset: { i18nAria: 'navigation' } });
-  const elements = [toggle, copy, handle, status, age, birthday, title, meta, navigation, ...extraElements];
+  const elements = [toggle, age, birthday, title, meta, navigation, ...extraElements];
   const document = {
     documentElement: { lang: 'zh-CN' },
     hidden: false,
@@ -68,13 +65,13 @@ function loadPage({ now = '2026-10-15T00:00:00Z', url = 'https://xiaoqiuyi.me/',
     location,
     history: { replaceState(_state, _title, nextUrl) { location.href = nextUrl.toString(); } },
     localStorage,
-    navigator: { clipboard },
+    navigator: {},
     URL,
     Intl,
     Date: DateAtTestTime,
   });
 
-  return { document, toggle, copy, handle, status, age, birthday, title, meta, navigation, location, writes };
+  return { document, toggle, age, birthday, title, meta, navigation, location, writes };
 }
 
 test('age changes on the birthday in Shanghai, including the UTC date boundary', () => {
@@ -116,45 +113,8 @@ test('blocked localStorage does not prevent initial rendering, switching, or sha
   assert.equal(loadPage({ storageFails: true, url: 'https://xiaoqiuyi.me/?lang=en' }).title.textContent, 'About me');
 });
 
-test('clipboard failure uses the selected language and leaves the button usable', async () => {
-  const page = loadPage({ saved: 'en', clipboard: { writeText: async () => { throw new Error('Permission denied'); } } });
-  await page.copy.click();
-  assert.match(page.status.textContent, /^Unable to copy automatically\./);
-  assert.match(page.status.textContent, /@xiaoqiuyi/);
-  assert.equal(page.copy.disabled, false);
-  page.toggle.click();
-  assert.equal(page.status.textContent, '');
-  await page.copy.click();
-  assert.match(page.status.textContent, /^无法自动复制/);
-});
-
-test('copy retains the exact existing handle and language changes clear its status', async () => {
-  const copied = [];
-  const page = loadPage({ clipboard: { writeText: async (value) => { copied.push(value); } } });
-  assert.equal(page.copy.hidden, false);
-  await page.copy.click();
-  assert.deepEqual(copied, ['@xiaoqiuyi']);
-  assert.equal(page.status.textContent, 'WhatsApp 账号已复制');
-  page.toggle.click();
-  assert.equal(page.status.textContent, '');
-  assert.equal(page.copy.attributes['aria-label'], 'Copy WhatsApp handle @xiaoqiuyi');
-});
-
-test('switching during a copy request does not restore a stale status', async () => {
-  let completeCopy;
-  const page = loadPage({ clipboard: { writeText: () => new Promise((resolve) => { completeCopy = resolve; }) } });
-  const pending = page.copy.click();
-  assert.equal(page.copy.disabled, true);
-  page.toggle.click();
-  completeCopy();
-  await pending;
-  assert.equal(page.status.textContent, '');
-  assert.equal(page.copy.disabled, false);
-});
-
-test('the page remains bilingual when the clipboard API is unavailable', () => {
+test('language and age rendering work without clipboard APIs', () => {
   const page = loadPage({ saved: 'en' });
-  assert.equal(page.copy.hidden, true);
   assert.equal(page.title.textContent, 'About me');
   assert.equal(page.age.textContent, '17 years old');
 });
