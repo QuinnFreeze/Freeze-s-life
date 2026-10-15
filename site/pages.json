@@ -6,7 +6,7 @@
     "titleKey": "siteTitle",
     "title": "Freeze’s Nest · 秋易的小窝",
     "descriptionKey": "homeMetaDescription",
-    "description": "Freeze’s Nest · 秋易的小窝，李秋易（Quinn Freeze）的个人主页。认识我、浏览公开作品，或从兴趣开始探索。"
+    "description": "李秋易（Quinn Freeze）的个人小窝，分享兴趣、制作的小工具与公开项目。"
   },
   {
     "file": "about.html",
@@ -15,7 +15,7 @@
     "titleKey": "aboutPageTitle",
     "title": "关于我 · Freeze’s Nest",
     "descriptionKey": "aboutMetaDescription",
-    "description": "关于李秋易（Quinn Freeze）：基本资料、兴趣方向与 Freeze’s Nest 数字小窝。"
+    "description": "关于李秋易（Quinn Freeze）：基本资料，以及学习英语、阅读历史和借助 AI 制作工具的经历。"
   },
   {
     "file": "projects.html",
@@ -24,7 +24,7 @@
     "titleKey": "projectsPageMetaTitle",
     "title": "个人项目 · Freeze’s Nest",
     "descriptionKey": "projectsPageMetaDescription",
-    "description": "Freeze’s Nest 的公开作品目录：Codex Liquid Glass 桌面主题与个人网站源码。"
+    "description": "我的两个公开项目：Codex 玻璃主题（codex-theme）与秋易的小窝（Freeze-s-life）。"
   },
   {
     "file": "interests.html",
@@ -33,7 +33,7 @@
     "titleKey": "interestsPageTitle",
     "title": "兴趣与关注 · Freeze’s Nest",
     "descriptionKey": "interestsMetaDescription",
-    "description": "李秋易（Quinn Freeze）关注历史、政治、技术、哲学与经济，也喜欢阅读、编程和策略游戏。"
+    "description": "我的兴趣：近现代史与史料、制度与社会、AI 编程、阅读和策略游戏，也向往去更多地方旅行。"
   },
   {
     "file": "contact.html",
@@ -49,17 +49,17 @@
     "page": "codex-theme",
     "nav": "projects",
     "titleKey": "themePageMetaTitle",
-    "title": "Codex Liquid Glass · Freeze’s Nest",
+    "title": "Codex 玻璃主题 · Freeze’s Nest",
     "descriptionKey": "themePageMetaDescription",
-    "description": "了解 codex-theme 的玻璃样式、本地壁纸设置、主题加载方式与公开源码。"
+    "description": "我为 macOS Codex 制作的玻璃主题：自定义壁纸、本地设置页和独立加载工具，源码公开在 codex-theme。"
   },
   {
     "file": "freeze-nest.html",
     "page": "freeze-nest",
     "nav": "projects",
     "titleKey": "nestPageMetaTitle",
-    "title": "Freeze’s Nest 网站 · 个人项目",
+    "title": "秋易的小窝 · 个人项目",
     "descriptionKey": "nestPageMetaDescription",
-    "description": "了解 Freeze’s Nest 个人网站的双语内容、响应式布局、自动年龄与原生 HTML、CSS、JavaScript 源码。"
+    "description": "我用 HTML、CSS 和 JavaScript 制作的双语个人网站，支持手机阅读，源码公开在 Freeze-s-life。"
   }
 ]
