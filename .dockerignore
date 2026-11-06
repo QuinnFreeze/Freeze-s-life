@@ -1,0 +1,8 @@
+**
+!Dockerfile
+!requirements.txt
+!server.py
+!public/
+!public/**
+!.vendor/
+!.vendor/*.whl

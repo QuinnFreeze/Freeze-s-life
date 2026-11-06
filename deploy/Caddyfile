@@ -1,0 +1,14 @@
+check.xiaoqiuyi.me {
+    encode zstd gzip
+    reverse_proxy komari:25774
+}
+
+xiaoqiuyi.me {
+    encode zstd gzip
+    reverse_proxy freeze-nest:8000
+}
+
+www.xiaoqiuyi.me {
+    redir https://xiaoqiuyi.me{uri} 308
+}
+

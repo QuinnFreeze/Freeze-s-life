@@ -1,0 +1,11 @@
+[Unit]
+Description=Sync Freeze Nest source changes to GitHub every minute
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=1min
+Unit=freeze-nest-github-sync.service
+AccuracySec=5s
+
+[Install]
+WantedBy=timers.target

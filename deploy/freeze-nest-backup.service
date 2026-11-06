@@ -1,0 +1,17 @@
+[Unit]
+Description=Freeze Nest online SQLite and media backup
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/freeze-nest/backup.py
+UMask=0077
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=true
+ProtectSystem=strict
+# Keep data and backup snapshots in one mount for hard-link media snapshots.
+ReadWritePaths=/opt/freeze-nest
+PrivateTmp=true
+MemoryMax=128M
+

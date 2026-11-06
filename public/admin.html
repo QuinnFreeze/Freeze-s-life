@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fafaf8">
+  <meta name="robots" content="noindex,nofollow">
+  <title>内容管理 · Freeze’s Nest</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/cms.css">
+  <link rel="stylesheet" href="/admin.css">
+  <script src="/admin.js" defer></script>
+</head>
+<body class="admin-page">
+  <a class="skip-link" href="#admin-content">跳到内容 / Skip to content</a>
+  <div class="wallpaper" aria-hidden="true"><img src="/assets/paper-background.jpeg" alt=""></div>
+  <div class="admin-shell">
+    <header class="site-header admin-header">
+      <a class="brand" href="/"><img class="brand-icon" src="/assets/favicon.svg" alt=""><span class="brand-copy"><span class="brand-name">Freeze’s Nest</span><span class="brand-subtitle" data-t="administration">内容管理</span></span></a>
+      <div class="admin-header-actions"><a class="admin-text-link" href="/articles" data-t="visitSite">浏览网站</a><button class="language-toggle" id="admin-language" type="button" aria-label="Switch language">EN</button></div>
+    </header>
+    <div id="admin-loading" class="card-base admin-empty" role="status">正在连接 / Connecting…</div>
+    <section id="admin-login" class="card-base admin-login" hidden>
+      <p class="admin-eyebrow">FREEZE’S NEST</p>
+      <h1 data-t="welcome">欢迎回来</h1>
+      <p class="admin-subtitle" data-t="loginLead">登录后管理文章与网站内容。</p>
+      <form id="login-form" class="admin-form">
+        <label><span data-t="username">账号</span><input name="username" autocomplete="username" required maxlength="64"></label>
+        <label><span data-t="password">密码</span><input name="password" type="password" autocomplete="current-password" required maxlength="256"></label>
+        <p id="login-error" class="admin-error" role="alert" hidden></p>
+        <button type="submit" class="admin-button primary" data-t="signIn">登录</button>
+      </form>
+      <p class="admin-note" data-t="privateAccess">仅限已授权账号，不开放公开注册。</p>
+    </section>
+    <div id="admin-workspace" class="admin-workspace" hidden>
+      <aside class="card-base admin-sidebar" aria-label="后台导航">
+        <p class="admin-eyebrow" data-t="workspace">工作空间</p>
+        <nav id="admin-nav">
+          <a href="#dashboard" data-route="dashboard" data-t="overview">概览</a>
+          <a href="#articles" data-route="articles" data-t="articles">文章管理</a>
+          <a href="#categories" data-route="categories" data-t="categories">分类管理</a>
+          <a href="#images" data-route="images" data-t="images">图片管理</a>
+          <a href="#settings" data-route="settings" data-t="settings" data-admin-only>网站设置</a>
+          <a href="#users" data-route="users" data-t="users" data-admin-only>后台账号</a>
+          <a href="#password" data-route="password" data-t="changePassword">修改密码</a>
+        </nav>
+        <div class="admin-sidebar-footer"><span id="admin-identity"></span><button type="button" class="admin-text-link" id="admin-logout" data-t="signOut">退出登录</button></div>
+      </aside>
+      <main id="admin-content" class="admin-main" tabindex="-1"></main>
+    </div>
+    <noscript><p class="card-base admin-empty">后台管理需要启用 JavaScript。 / Enable JavaScript to use administration.</p></noscript>
+  </div>
+  <div id="admin-notice" class="admin-notice" role="status" aria-live="polite" hidden></div>
+  <dialog id="admin-confirm" class="card-base admin-dialog"><form method="dialog"><h2 data-t="confirmTitle">请确认</h2><p id="confirm-message"></p><div class="admin-actions"><button value="cancel" class="admin-button" data-t="cancel">取消</button><button value="confirm" class="admin-button danger" data-t="confirm">确认</button></div></form></dialog>
+</body>
+</html>

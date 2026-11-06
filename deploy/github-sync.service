@@ -1,0 +1,23 @@
+[Unit]
+Description=Sync running Freeze Nest source to GitHub
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+Environment=HOME=/root
+Environment=GH_CONFIG_DIR=/root/.config/gh
+Environment=GIT_TERMINAL_PROMPT=0
+WorkingDirectory=/opt/freeze-nest/source-repository
+ExecStart=/usr/bin/python3 /usr/local/libexec/freeze-nest-github-sync.py
+UMask=0077
+TimeoutStartSec=10min
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/freeze-nest/source-repository /run/lock
+

@@ -1,82 +1,50 @@
-# Freeze-s-life
+# Freeze’s Nest · 秋易的小窝
 
-**Freeze’s Nest · 秋易的小窝**，李秋易 / Quinn Freeze 的个人数字空间。
+[线上网站](https://xiaoqiuyi.me/) · [文章](https://xiaoqiuyi.me/articles) · [管理后台](https://xiaoqiuyi.me/admin)
 
-以手机访问为主，沿用 Firefly 风格的圆角导航、玻璃卡片、浅色联系按钮与胶囊标签。展示已确认的名字、题词、生日、自动计算的年龄、兴趣、公开项目和原有联系入口。支持中文与英文切换，不增加运行时依赖。
+个人网站，提供中英文介绍、项目、兴趣、联系方式和文章内容管理。当前生产版本使用原生 HTML/CSS/JavaScript、Python 3.12、Flask、Gunicorn 与 SQLite，由本机 Docker 和 Caddy 提供服务。
 
-保留现有手绘壁纸与透明玻璃视觉。壁纸使用 `object-fit: cover` 铺满视口，卡片、导航和内容区域随屏幕宽度调整，手机以单栏阅读为主。首页提供简短入口，关于、项目、兴趣和联系使用独立页面，公开项目另有详情页。
+本仓库现已包含实际生产应用源码。代码上传到 GitHub 不会自动部署或重启线上服务。
 
-## 设计参考与许可
+## 文件结构
 
-参考 [CuteLeaf/Firefly](https://github.com/CuteLeaf/Firefly)，源码快照为 `91cbbefe53716e70b77ca9c41e27af10f5b27cab`。当前版本在原生 HTML/CSS/JavaScript 中适配其前景组件设计，不导入博客示例、头像或完整框架。
+- `server.py`：后端、文章 API、账号权限与图片处理。
+- `public/`：当前线上页面、样式、脚本及网站自带图片。
+- `requirements.txt`、`requirements-dev.txt`：锁定的运行与开发依赖。
+- `Dockerfile`、`.vendor/`：生产镜像构建及经过校验的 pip wheel。
+- `deploy/`：应用部署、备份与 GitHub 源码同步的服务模板。
+- `tests/`：应用回归测试和同步工具测试。
+- `docs/production.md`：随生产版本同步的操作说明。
+- `docs/github-sync.md`：自动上传的范围、运行方式与故障检查。
+- `tools/sync-production.py`：本机生产源码自动提交和推送工具。
 
-Firefly 的 MIT 版权与许可声明保留在 [`dist/assets/firefly-license.txt`](dist/assets/firefly-license.txt)。该第三方声明用于相应的参考/改编代码，不将现有壁纸归为 Firefly 素材。
+`site/`、`dist/`、`scripts/build.mjs`、`package.json` 和 Node.js 测试保留自早期静态站。当前生产网站使用 `public/` 和 `server.py`；旧 GitHub Pages 工作流仅支持手动发布早期静态版本，无法运行文章后台。
 
-## 网站文件
-
-- `site/layout.html`：各页共用的 HTML 框架、页头与导航
-- `site/pages.json`：页面文件名、导航归属、标题与 SEO 描述
-- `site/pages/*.html`：七个页面的正文源片段
-- `scripts/build.mjs`：使用 Node.js 内置模块生成完整静态页面
-- `dist/index.html`：首页
-- `dist/about.html`、`dist/projects.html`、`dist/interests.html`、`dist/contact.html`：关于、项目、兴趣与联系
-- `dist/codex-theme.html`、`dist/freeze-nest.html`：两个已核实公开项目的详情
-- `dist/styles.css`：响应式样式
-- `dist/app.js`：语言切换与自动年龄
-- `dist/assets/`：背景图片与图标
-- `dist/sitemap.xml`、`dist/robots.txt`：由构建生成，只列出真实公开页面
-- `.github/workflows/pages.yml`：GitHub Pages 自动部署
-
-网站仍可直接使用 `dist/`，无需安装依赖。共享布局只在构建时展开，线上是七个可直接访问的 HTML 页面，不需要 Node.js 运行服务。资源与站内链接采用相对路径，兼容 GitHub Pages 的仓库子路径。即使不启用 JavaScript，中文基本资料、项目与联系链接仍可使用；年龄显示为 `—` 并提示启用 JavaScript，避免展示过时的固定年龄。首页原有的 `#profile`、`#projects`、`#interests` 和 `#contact` 锚点继续保留。
-
-语言按钮切换中文与英文，浏览器可用时保存偏好；`?lang=zh` 或 `?lang=en` 可指定分享链接的语言。存储被禁用时仍可切换。年龄按 `Asia/Shanghai` 日期和生日 `2009-01-21` 计算。
-
-WhatsApp 保留原有账号 `@xiaoqiuyi`，使用官方用户名分享格式 `https://wa.me/xiaoqiuyi`，与其他社交入口一样直接跳转。
-
-## 公开项目与隐私
-
-项目资料于 2026-10-15 根据 [QuinnFreeze 的公开仓库](https://github.com/QuinnFreeze?tab=repositories)核实。当前展示以下两个有实际源码的非 Fork 项目：
-
-- [codex-theme](https://github.com/QuinnFreeze/codex-theme)：macOS Codex 主题，技术标签以仓库中的 Python、JavaScript 和 CSS 源码为依据。
-- [Freeze-s-life](https://github.com/QuinnFreeze/Freeze-s-life)：本网站，使用 HTML、CSS 和 JavaScript。
-
-个人资料 README 仓库 `QuinnFreeze` 不作为独立项目展示。不显示私有、空白或无关 Fork 仓库，也不声明未核实的项目进度。项目简介是已核实的静态内容，访客加载页面时无需请求 GitHub API；新增作品时需先核实公开源码再更新。
-
-页面仅包含主动提供的基本资料与联系方式，不收集或添加学校、具体位置、家庭、资产和私人情感信息。无分析追踪脚本和第三方字体。
-
-## 部署
-
-在仓库的 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。
-然后在 **Actions → Deploy website to GitHub Pages → Run workflow** 运行部署。
-此后向 `main` 推送网站文件或部署配置的更新，会自动重新部署。
-
-网站当前地址为 [xiaoqiuyi.me](https://xiaoqiuyi.me/)，由 GitHub Pages 发布。现有域名绑定与部署工作流保持不变。
-
-修改页面源片段或共享布局后，先执行 `npm run build` 与 `npm test`，再把生成的 `dist/` 页面与源文件一同提交。GitHub Actions 仍直接上传 `dist/`，不在发布时另行运行模板构建。
-
-## 本地预览
-
-在仓库目录执行：
+## 本地开发
 
 ```bash
-python3 -I -m http.server 8000 --directory dist
+python3 -m venv .venv
+.venv/bin/pip install -r requirements-dev.txt
+.venv/bin/python server.py init-admin --data-dir .qa-data --username local-admin --output .qa-data/credentials.txt
+NEST_DATA_DIR=.qa-data NEST_COOKIE_SECURE=0 NEST_ORIGIN=http://127.0.0.1:8765 .venv/bin/gunicorn --bind 127.0.0.1:8765 --workers 1 --threads 2 'server:create_app()'
 ```
 
-然后访问 `http://localhost:8000`。
-
-## 本地验证
-
-使用 Node.js 22 或更新版本执行，无需 `npm install`：
+管理员初始密码写入本地 `.qa-data/credentials.txt`。请仅用独立的本地数据目录开发测试。
 
 ```bash
-npm run build
-npm test
+.venv/bin/python -m pytest -q tests
 ```
 
-测试覆盖生日与时区边界、双语交互、存储不可用时的回退，以及七个页面的导航、标题、canonical、内部深链接、项目来源、原有联系方式和 WhatsApp 用户名链接。构建校验页面元数据与脚本语法，生成 `dist/` 下的七个 HTML、站点地图和 robots 文件，再检查所有页面引用的本地资源与跨页锚点。
+部署方式及现有生产环境约束见 [生产说明](docs/production.md)。
 
-构建保留 `dist/` 中的样式、脚本、图片和其他现有文件，只清理被 Git 忽略的 `.build/` 后复制部署文件用于本地检查。执行构建不会推送、调用部署或修改 GitHub Actions。
+## 自动上传
 
-## 修改与备份
+生产主机上的 `freeze-nest-github-sync.timer` 每分钟检查当前运行版本的源码。有变更时自动提交并推送到本仓库 `main`；无变更不创建提交。新部署使用 `freeze-nest:<release>` 镜像，并将对应源码放入 `/opt/freeze-nest/releases/<release>/`，同步工具会自动识别。
 
-页面正文编辑 `site/pages/`，共用页头、页脚编辑 `site/layout.html`，标题与描述编辑 `site/pages.json`；然后执行构建更新 `dist/`。样式、交互和图片仍在 `dist/` 下维护。不要仅修改生成的 HTML，下一次构建会覆盖它。可从仓库的 **Code → Download ZIP** 下载完整源码包。
+同步的是生产 release 目录内的代码，不会扫描整台机器或上传聊天工作目录。未部署的其他目录改动不会被自动上传。站点后台中的文章、账号和设置属于数据库内容，不在 GitHub 源码同步范围内。
+
+数据库、会话密钥、初始密码、环境文件、用户上传图片与备份归档均不进入本公开仓库，继续由现有的本地备份任务管理。详见 [自动同步说明](docs/github-sync.md)。
+
+## 许可
+
+前景组件参考 [CuteLeaf/Firefly](https://github.com/CuteLeaf/Firefly)，相关 MIT 许可见 `public/assets/firefly-license.txt`。网站自带壁纸不属于 Firefly 素材。
