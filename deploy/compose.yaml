@@ -21,7 +21,7 @@ services:
     cpus: 0.50
     pids_limit: 64
     networks:
-      edge:
+      nest_net:
         aliases:
           - freeze-nest
     logging:
@@ -30,7 +30,7 @@ services:
         max-size: "5m"
         max-file: "3"
 networks:
-  edge:
+  nest_net:
     external: true
-    name: komari-monitor_default
+    name: nest_net
 
